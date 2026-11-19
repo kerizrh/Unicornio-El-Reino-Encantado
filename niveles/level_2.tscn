@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://61vneh81exp0"]
+
+[ext_resource type="Script" uid="uid://d0jvacp7moed8" path="res://personaje/CameraFollow.gd" id="1_cam"]
+[ext_resource type="Texture2D" uid="uid://b5a8rbpwuomtl" path="res://assets/fantasia/fondo_cielo.png" id="2_fondo"]
+[ext_resource type="Script" uid="uid://cfljqw56ujgff" path="res://niveles/GameController.gd" id="3_gc"]
+[ext_resource type="PackedScene" uid="uid://b6uqfrnmphs6d" path="res://suelos/puente.tscn" id="4_puente"]
+[ext_resource type="PackedScene" path="res://suelos/nube.tscn" id="5_nube"]
+[ext_resource type="PackedScene" path="res://suelos/plataforma_movil.tscn" id="6_movil"]
+[ext_resource type="PackedScene" path="res://suelos/plataforma_fragil.tscn" id="7_fragil"]
+[ext_resource type="PackedScene" path="res://suelos/trampolin.tscn" id="8_tramp"]
+[ext_resource type="PackedScene" uid="uid://i6fbee67uc6n" path="res://suelos/top.tscn" id="9_cornisa"]
+[ext_resource type="PackedScene" uid="uid://dpn282vwtwacc" path="res://personaje/personaje.tscn" id="10_pj"]
+[ext_resource type="PackedScene" path="res://enemigos/troll.tscn" id="11_troll"]
+[ext_resource type="PackedScene" path="res://enemigos/lobo.tscn" id="12_lobo"]
+[ext_resource type="PackedScene" path="res://enemigos/murcielago.tscn" id="13_murc"]
+[ext_resource type="Script" uid="uid://y6eh780pac8q" path="res://enemigos/lluvia_fuego.gd" id="14_lluvia"]
+[ext_resource type="Texture2D" uid="uid://cleib6ijkaxb0" path="res://assets/fantasia/cristal.png" id="15_cristal"]
+[ext_resource type="PackedScene" uid="uid://dj5jiwqy6m03p" path="res://ui/canvas_layer_ui.tscn" id="16_ui"]
+[ext_resource type="PackedScene" path="res://ui/touch_controls.tscn" id="17_touch"]
+[ext_resource type="PackedScene" path="res://ui/pause_menu.tscn" id="18_pause"]
+[ext_resource type="AudioStream" uid="uid://bqafdlpunvbgp" path="res://assets/audio/musica/reino_encantado.wav" id="19_musica"]
+[ext_resource type="Script" uid="uid://cbperlrbgkg4l" path="res://niveles/musica.gd" id="20_musica_gd"]
+[ext_resource type="Texture2D" uid="uid://bxucwqdwwi1eq" path="res://assets/kenney/decoration/background_cloudA.png" id="21_nubeA"]
+[ext_resource type="Texture2D" uid="uid://cd4qfkandxjhh" path="res://assets/kenney/decoration/background_cloudB.png" id="22_nubeB"]
+[ext_resource type="Texture2D" uid="uid://b5qpk785458re" path="res://assets/fantasia/arbol_turquesa.png" id="23_arbol1"]
+[ext_resource type="Texture2D" uid="uid://b0mkdrf5h0hm8" path="res://assets/fantasia/arbol_rosa.png" id="24_arbol2"]
+[ext_resource type="PackedScene" path="res://niveles/limites_nivel.tscn" id="99_limites"]
+[ext_resource type="PackedScene" path="res://objetos/gema.tscn" id="30_gema"]
+[ext_resource type="PackedScene" path="res://objetos/corazon.tscn" id="31_corazon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cristal"]
+size = Vector2(80, 110)
+
+[node name="Level2" type="Node2D" unique_id=638018780]
+
+[node name="Fondo" type="Sprite2D" parent="." unique_id=1101309356]
+position = Vector2(658, -99)
+texture = ExtResource("2_fondo")
+
+[node name="GameController" type="Node2D" parent="." unique_id=904477150]
+script = ExtResource("3_gc")
+nombre_nivel = "NIVEL 2 · La Torre de las Nubes"
+mision = "¡Tienes el poder del Cristal: salta sobre lobos y murciélagos\npara vencerlos! Usa los hongos y cuidado con los cristales frágiles."
+
+[node name="Timer" type="Timer" parent="GameController" unique_id=1974216336]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1034426540 node_paths=PackedStringArray("object_to_follow")]
+position = Vector2(150, 400)
+limit_left = 0
+limit_top = -1250
+limit_right = 1152
+limit_bottom = 690
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+script = ExtResource("1_cam")
+object_to_follow = NodePath("../Personaje")
+
+[node name="decoracion" type="Node2D" parent="." unique_id=2087304679]
+
+[node name="Arbol1" type="Sprite2D" parent="decoracion" unique_id=31845962]
+position = Vector2(70, 484)
+texture = ExtResource("23_arbol1")
+
+[node name="Arbol2" type="Sprite2D" parent="decoracion" unique_id=1974270025]
+position = Vector2(1090, 484)
+texture = ExtResource("24_arbol2")
+
+[node name="NubeDeco1" type="Sprite2D" parent="decoracion" unique_id=348735921]
+modulate = Color(0.85, 0.75, 1, 0.7)
+position = Vector2(140, 210)
+texture = ExtResource("21_nubeA")
+
+[node name="NubeDeco2" type="Sprite2D" parent="decoracion" unique_id=1974988233]
+modulate = Color(0.85, 0.75, 1, 0.7)
+position = Vector2(980, -160)
+texture = ExtResource("22_nubeB")
+
+[node name="NubeDeco3" type="Sprite2D" parent="decoracion" unique_id=946332859]
+modulate = Color(0.85, 0.75, 1, 0.7)
+position = Vector2(150, -560)
+scale = Vector2(-1, 1)
+texture = ExtResource("21_nubeA")
+
+[node name="NubeDeco4" type="Sprite2D" parent="decoracion" unique_id=1428175869]
+modulate = Color(0.85, 0.75, 1, 0.7)
+position = Vector2(620, -1150)
+texture = ExtResource("22_nubeB")
+
+[node name="Cristal" type="Sprite2D" parent="." unique_id=12862320]
+position = Vector2(1080, -1073)
+texture = ExtResource("15_cristal")
+
+[node name="Area2D" type="Area2D" parent="Cristal" unique_id=1057453885]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cristal/Area2D" unique_id=1609844026]
+shape = SubResource("RectangleShape2D_cristal")
+
+[node name="Suelos" type="Node2D" parent="." unique_id=880535063]
+
+[node name="Suelo" parent="Suelos" unique_id=911209479 instance=ExtResource("4_puente")]
+position = Vector2(592, 582)
+
+[node name="Nube1" parent="Suelos" unique_id=263469563 instance=ExtResource("5_nube")]
+position = Vector2(330, 461)
+
+[node name="Movil1" parent="Suelos" unique_id=2108198650 instance=ExtResource("6_movil")]
+position = Vector2(560, 373)
+
+[node name="Nube2" parent="Suelos" unique_id=1753452984 instance=ExtResource("5_nube")]
+position = Vector2(1000, 276)
+
+[node name="Fragil1" parent="Suelos" unique_id=1814920255 instance=ExtResource("7_fragil")]
+position = Vector2(860, 191)
+
+[node name="Fragil2" parent="Suelos" unique_id=2057548700 instance=ExtResource("7_fragil")]
+position = Vector2(760, 106)
+
+[node name="Nube3" parent="Suelos" unique_id=855967395 instance=ExtResource("5_nube")]
+position = Vector2(640, 16)
+
+[node name="Hongo1" parent="Suelos" unique_id=1556569419 instance=ExtResource("8_tramp")]
+position = Vector2(580, 10)
+
+[node name="Cornisa1" parent="Suelos" unique_id=345542167 instance=ExtResource("9_cornisa")]
+position = Vector2(400, -291)
+
+[node name="MovilVertical" parent="Suelos" unique_id=1097174596 instance=ExtResource("6_movil")]
+position = Vector2(560, -287)
+desplazamiento = Vector2(0, -200)
+duracion = 2.0
+
+[node name="Nube4" parent="Suelos" unique_id=1811308004 instance=ExtResource("5_nube")]
+position = Vector2(790, -554)
+
+[node name="Fragil3" parent="Suelos" unique_id=1462450431 instance=ExtResource("7_fragil")]
+position = Vector2(930, -629)
+
+[node name="Movil2" parent="Suelos" unique_id=1715586962 instance=ExtResource("6_movil")]
+position = Vector2(840, -717)
+desplazamiento = Vector2(-300, 0)
+duracion = 2.4
+retraso = 0.6
+
+[node name="Nube5" parent="Suelos" unique_id=1223843364 instance=ExtResource("5_nube")]
+position = Vector2(330, -814)
+
+[node name="Hongo2" parent="Suelos" unique_id=571050063 instance=ExtResource("8_tramp")]
+position = Vector2(400, -820)
+
+[node name="NubeRescate" parent="Suelos" instance=ExtResource("5_nube")]
+position = Vector2(960, -464)
+
+[node name="HongoAtajo" parent="Suelos" instance=ExtResource("8_tramp")]
+position = Vector2(1080, 561.5)
+
+[node name="Cima1" parent="Suelos" unique_id=938857261 instance=ExtResource("9_cornisa")]
+position = Vector2(711, -1001)
+
+[node name="Cima2" parent="Suelos" unique_id=1113195460 instance=ExtResource("9_cornisa")]
+position = Vector2(1133, -1001)
+
+[node name="Coleccionables" type="Node2D" parent="."]
+
+[node name="Gema1" parent="Coleccionables" instance=ExtResource("30_gema")]
+position = Vector2(680, 318)
+
+[node name="Gema2" parent="Coleccionables" instance=ExtResource("30_gema")]
+position = Vector2(760, 55)
+
+[node name="Gema3" parent="Coleccionables" instance=ExtResource("30_gema")]
+position = Vector2(580, -150)
+
+[node name="Gema4" parent="Coleccionables" instance=ExtResource("30_gema")]
+position = Vector2(560, -540)
+
+[node name="Gema5" parent="Coleccionables" instance=ExtResource("30_gema")]
+position = Vector2(950, -680)
+
+[node name="Corazon1" parent="Coleccionables" instance=ExtResource("31_corazon")]
+position = Vector2(1060, 230)
+
+[node name="Corazon2" parent="Coleccionables" instance=ExtResource("31_corazon")]
+position = Vector2(560, -1050)
+
+[node name="LimitesNivel" parent="." unique_id=719901603 instance=ExtResource("99_limites")]
+
+[node name="Personaje" parent="." unique_id=1701434401 instance=ExtResource("10_pj")]
+position = Vector2(150, 515)
+collision_layer = 2
+poder_cristal = true
+
+[node name="Troll" parent="." unique_id=1313627783 instance=ExtResource("11_troll")]
+position = Vector2(860, -1062)
+espera_min = 1.8
+espera_max = 3.5
+mirar_izquierda = true
+
+[node name="Enemigos" type="Node2D" parent="." unique_id=315829886]
+
+[node name="LoboSuelo" parent="Enemigos" unique_id=401752532 instance=ExtResource("12_lobo")]
+position = Vector2(900, 530)
+velocidad_ataque = 180.0
+limite_izquierdo = 350.0
+
+[node name="LoboCornisa" parent="Enemigos" unique_id=514161302 instance=ExtResource("12_lobo")]
+position = Vector2(240, -330)
+velocidad_ataque = 170.0
+limite_izquierdo = 220.0
+limite_derecho = 580.0
+
+[node name="Murcielago1" parent="Enemigos" unique_id=1981121255 instance=ExtResource("13_murc")]
+position = Vector2(620, 140)
+ancho_patrulla = 220.0
+
+[node name="Murcielago2" parent="Enemigos" unique_id=1079963471 instance=ExtResource("13_murc")]
+position = Vector2(640, -640)
+ancho_patrulla = 260.0
+
+[node name="Murcielago3" parent="Enemigos" unique_id=1225015307 instance=ExtResource("13_murc")]
+position = Vector2(1000, -880)
+ancho_patrulla = 120.0
+
+[node name="LluviaDeFuego" type="Node2D" parent="." unique_id=1271399297]
+script = ExtResource("14_lluvia")
+retraso_inicial = 10.0
+espera_inicial = 4.5
+espera_minima = 1.8
+seguir_camara = true
+
+[node name="Timer" type="Timer" parent="LluviaDeFuego" unique_id=1446157265]
+one_shot = true
+
+[node name="CanvasLayerUI" parent="." unique_id=984845495 instance=ExtResource("16_ui")]
+
+[node name="TouchControls" parent="." unique_id=1499923121 instance=ExtResource("17_touch")]
+
+[node name="PauseMenu" parent="." unique_id=800008126 instance=ExtResource("18_pause")]
+
+[node name="Musica" type="AudioStreamPlayer" parent="." unique_id=94428848]
+stream = ExtResource("19_musica")
+volume_db = -4.0
+pitch_scale = 1.08
+autoplay = true
+script = ExtResource("20_musica_gd")
+
+[connection signal="player_health_updated" from="GameController" to="CanvasLayerUI" method="_on_game_controller_player_health_updated"]
+[connection signal="time_updated" from="GameController" to="CanvasLayerUI" method="_on_game_controller_time_updated"]
+[connection signal="timeout" from="GameController/Timer" to="GameController" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Cristal/Area2D" to="GameController" method="_on_area_2d_body_entered"]
+[connection signal="player_hit" from="Personaje" to="GameController" method="_on_personaje_player_hit"]

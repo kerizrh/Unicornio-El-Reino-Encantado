@@ -1,0 +1,40 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://suelos/plataforma_fragil.gd" id="1_fragil"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/cristal_fragil.png" id="2_tex"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/cristal.wav" id="3_snd"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/brillo.wav" id="4_brillo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fragil"]
+size = Vector2(150, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sensor"]
+size = Vector2(140, 14)
+
+[node name="PlataformaFragil" type="StaticBody2D"]
+script = ExtResource("1_fragil")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_fragil")
+one_way_collision = true
+
+[node name="Sensor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_sensor")
+
+[node name="Sonido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_snd")
+volume_db = -4.0
+
+[node name="Brillo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_brillo")
+volume_db = -10.0
+pitch_scale = 1.3

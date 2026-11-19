@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dpn282vwtwacc"]
+
+[ext_resource type="Script" path="res://personaje/personaje.gd" id="1_x0ldx"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/unicornio_quieto.png" id="2_quieto"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/unicornio_paso1.png" id="3_paso1"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/unicornio_paso2.png" id="4_paso2"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/unicornio_salto.png" id="5_salto"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/salto.wav" id="6_salto"]
+[ext_resource type="AudioStream" path="res://assets/audio/efectos/golpe.wav" id="7_golpe"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/chispa.png" id="8_chispa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_quieto")
+}],
+"loop": true,
+"name": &"quieto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_paso1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_quieto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_paso2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_quieto")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_salto")
+}],
+"loop": true,
+"name": &"salto",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fryba"]
+radius = 22.0
+height = 74.0
+
+[sub_resource type="Gradient" id="Gradient_brillo"]
+colors = PackedColorArray(1, 0.75, 0.95, 1, 0.6, 0.85, 1, 0)
+
+[node name="Personaje" type="CharacterBody2D"]
+collision_mask = 17
+script = ExtResource("1_x0ldx")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.55, 0.55)
+sprite_frames = SubResource("SpriteFrames_uni")
+animation = &"quieto"
+autoplay = "quieto"
+
+[node name="EstelaMagica" type="CPUParticles2D" parent="."]
+position = Vector2(-20, 10)
+amount = 14
+lifetime = 0.7
+local_coords = false
+texture = ExtResource("8_chispa")
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector2(0, -1)
+spread = 60.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+scale_amount_min = 0.3
+scale_amount_max = 0.7
+color_ramp = SubResource("Gradient_brillo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fryba")
+
+[node name="SonidoSalto" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_salto")
+volume_db = -6.0
+
+[node name="SonidoGolpe" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_golpe")

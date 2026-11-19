@@ -1,0 +1,20 @@
+# Caché del editor de Godot (se regenera al abrir el proyecto)
+.godot/
+
+# Plantilla de compilación Gradle de Android (pesa >1 GB; se instala desde el editor si se necesita)
+android/
+
+# Builds y credenciales de firma
+*.aab
+*.idsig
+*.keystore
+export_credentials.cfg
+*.respaldo
+
+# El APK listo para instalar sí se publica en apk/
+*.apk
+!apk/*.apk
+
+# Sistema / Python
+.DS_Store
+__pycache__/

@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://enemigos/murcielago.gd" id="1_murc"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/murcielago1.png" id="2_m1"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/murcielago2.png" id="3_m2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_murc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m2")
+}],
+"loop": true,
+"name": &"volar",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_murc"]
+radius = 16.0
+
+[node name="Murcielago" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_murc")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_murc")
+animation = &"volar"
+autoplay = "volar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_murc")

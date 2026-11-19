@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/fantasia/nube_plataforma.png" id="1_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nube"]
+size = Vector2(180, 12)
+
+[node name="Nube" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nube")
+one_way_collision = true

@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://suelos/tramo.gd" id="1_tramo"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/plataforma.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tramo"]
+resource_local_to_scene = true
+size = Vector2(396, 20)
+
+[node name="Tramo" type="StaticBody2D"]
+script = ExtResource("1_tramo")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 400, 49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_tramo")
+one_way_collision = true

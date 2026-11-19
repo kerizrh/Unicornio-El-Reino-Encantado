@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://suelos/plataforma_movil.gd" id="1_mov"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/plataforma_magica.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mov"]
+size = Vector2(176, 14)
+
+[node name="PlataformaMovil" type="AnimatableBody2D"]
+script = ExtResource("1_mov")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_mov")
+one_way_collision = true

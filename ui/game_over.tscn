@@ -1,0 +1,154 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ui/game_over.gd" id="1_go"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/troll.png" id="2_troll"]
+[ext_resource type="AudioStream" path="res://assets/audio/musica/derrota.wav" id="3_musica"]
+[ext_resource type="Script" path="res://niveles/musica.gd" id="4_musica_gd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.16, 0.08, 0.2, 0.92)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.85, 0.35, 0.55, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+content_margin_left = 40.0
+content_margin_top = 24.0
+content_margin_right = 40.0
+content_margin_bottom = 28.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boton"]
+bg_color = Color(0.95, 0.4, 0.65, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.13, 0.28, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boton_foco"]
+bg_color = Color(1, 0.55, 0.78, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.95, 0.75, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_salir"]
+bg_color = Color(0.3, 0.22, 0.42, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.13, 0.28, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="GameOver" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_go")
+
+[node name="Velo" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25, 0.02, 0.1, 0.6)
+
+[node name="Centro" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Centro"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="Centro/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Troll" type="TextureRect" parent="Centro/Panel/VBox"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+pivot_offset = Vector2(0, 60)
+texture = ExtResource("2_troll")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Titulo" type="Label" parent="Centro/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.45, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.04, 0.12, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Motivo" type="Label" parent="Centro/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_font_sizes/font_size = 26
+text = "¡El troll te alcanzó!"
+horizontal_alignment = 1
+
+[node name="Consejo" type="Label" parent="Centro/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.75, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "Consejo: salta las rocas y aléjate de los lobos."
+horizontal_alignment = 1
+
+[node name="Botones" type="HBoxContainer" parent="Centro/Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="BtnReintentar" type="Button" parent="Centro/Panel/VBox/Botones"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 90)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.13, 0.28, 1)
+theme_override_colors/font_hover_color = Color(0.2, 0.13, 0.28, 1)
+theme_override_colors/font_focus_color = Color(0.2, 0.13, 0.28, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0.13, 0.28, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxFlat_boton")
+theme_override_styles/hover = SubResource("StyleBoxFlat_boton_foco")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_boton")
+theme_override_styles/focus = SubResource("StyleBoxFlat_boton_foco")
+text = "REINTENTAR"
+
+[node name="BtnSalir" type="Button" parent="Centro/Panel/VBox/Botones"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_salir")
+theme_override_styles/hover = SubResource("StyleBoxFlat_salir")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_salir")
+theme_override_styles/focus = SubResource("StyleBoxFlat_salir")
+text = "SALIR"
+
+[node name="Musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_musica")
+volume_db = -3.0
+autoplay = true
+script = ExtResource("4_musica_gd")

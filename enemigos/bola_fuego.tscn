@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://enemigos/bola_fuego.gd" id="1_fuego"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/bola_fuego.png" id="2_fuego"]
+[ext_resource type="Texture2D" path="res://assets/fantasia/chispa.png" id="3_chispa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fuego"]
+radius = 15.0
+
+[sub_resource type="Gradient" id="Gradient_fuego"]
+colors = PackedColorArray(1, 0.85, 0.3, 1, 1, 0.3, 0.1, 0)
+
+[node name="BolaFuego" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 2
+gravity_scale = 0.3
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_fuego")
+
+[node name="Estela" type="CPUParticles2D" parent="."]
+position = Vector2(0, -10)
+amount = 20
+lifetime = 0.5
+local_coords = false
+texture = ExtResource("3_chispa")
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+scale_amount_min = 0.5
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_fuego")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -20)
+texture = ExtResource("2_fuego")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fuego")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

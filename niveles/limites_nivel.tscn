@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_izq"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_der"]
+normal = Vector2(-1, 0)
+distance = -1152.0
+
+[node name="LimitesNivel" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="ParedIzquierda" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_izq")
+
+[node name="ParedDerecha" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_der")

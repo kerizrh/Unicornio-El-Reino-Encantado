@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://ui/touch_controls.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui_touch/btn_left.png" id="2_left"]
+[ext_resource type="Texture2D" path="res://assets/ui_touch/btn_right.png" id="3_right"]
+[ext_resource type="Texture2D" path="res://assets/ui_touch/btn_jump.png" id="4_jump"]
+
+[node name="TouchControls" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_script")
+
+[node name="BtnIzquierda" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+position = Vector2(40, 468)
+texture_normal = ExtResource("2_left")
+passby_press = true
+action = "izquierda"
+
+[node name="BtnDerecha" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+position = Vector2(220, 468)
+texture_normal = ExtResource("3_right")
+passby_press = true
+action = "derecha"
+
+[node name="BtnSaltar" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+position = Vector2(972, 468)
+texture_normal = ExtResource("4_jump")
+action = "saltar"

@@ -1,0 +1,23 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/fantasia/chispa.png" id="1_chispa"]
+
+[sub_resource type="Gradient" id="Gradient_exp"]
+colors = PackedColorArray(1, 0.95, 0.6, 1, 1, 0.35, 0.1, 0)
+
+[node name="ExplosionChispas" type="CPUParticles2D"]
+emitting = false
+amount = 24
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_chispa")
+spread = 180.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 80.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.6
+scale_amount_max = 1.4
+color_ramp = SubResource("Gradient_exp")
+
+[connection signal="finished" from="." to="." method="queue_free"]
